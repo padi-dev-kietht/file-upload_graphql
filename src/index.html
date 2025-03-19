@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="en">
+  <body>
+    <h2>Upload File (GraphQL)</h2>
+    <input type="file" id="fileInput" />
+    <button onclick="uploadFile()">Upload</button>
+
+    <script>
+      async function uploadFile() {
+        const fileInput = document.getElementById('fileInput');
+        if (!fileInput.files.length) return alert('Select a file first!');
+
+        const formData = new FormData();
+        formData.append(
+          'operations',
+          JSON.stringify({
+            query:
+              'mutation ($file: Upload!) { _fileUpload(input: { file: $file }) { filename mimetype } }',
+            variables: { file: null },
+          }),
+        );
+        formData.append('map', JSON.stringify({ 0: ['variables.file'] }));
+        formData.append('0', fileInput.files[0]);
+
+        const res = await fetch('http://localhost:3000/graphql', {
+          method: 'POST',
+          body: formData,
+        });
+
+        const json = await res.json();
+        console.log(json);
+        alert(JSON.stringify(json, null, 2));
+      }
+    </script>
+  </body>
+</html>

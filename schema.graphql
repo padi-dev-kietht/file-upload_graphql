@@ -1,0 +1,2328 @@
+"""The root query type which gives access points into the data universe."""
+type Query implements Node {
+  """
+  Exposes the root query type nested one level down. This is helpful for Relay 1
+  which can only query top level fields if they are in a particular form.
+  """
+  query: Query!
+
+  """
+  The root query type must be a `Node` to work well with Relay 1 mutations. This just resolves to `query`.
+  """
+  nodeId: ID!
+
+  """Fetches an object given its globally unique `ID`."""
+  node(
+    """The globally unique `ID`."""
+    nodeId: ID!
+  ): Node
+
+  """Reads and enables pagination through a set of `Answer`."""
+  allAnswers(
+    """Only read the first `n` values of the set."""
+    first: Int
+
+    """Only read the last `n` values of the set."""
+    last: Int
+
+    """
+    Skip the first `n` values from our `after` cursor, an alternative to cursor
+    based pagination. May not be used with `last`.
+    """
+    offset: Int
+
+    """Read all values in the set before (above) this cursor."""
+    before: Cursor
+
+    """Read all values in the set after (below) this cursor."""
+    after: Cursor
+
+    """The method to use when ordering `Answer`."""
+    orderBy: [AnswersOrderBy!] = [PRIMARY_KEY_ASC]
+
+    """
+    A condition to be used in determining which values should be returned by the collection.
+    """
+    condition: AnswerCondition
+  ): AnswersConnection
+
+  """Reads a set of `Answer`."""
+  allAnswersList(
+    """Only read the first `n` values of the set."""
+    first: Int
+
+    """Skip the first `n` values."""
+    offset: Int
+
+    """The method to use when ordering `Answer`."""
+    orderBy: [AnswersOrderBy!]
+
+    """
+    A condition to be used in determining which values should be returned by the collection.
+    """
+    condition: AnswerCondition
+  ): [Answer!]
+
+  """Reads and enables pagination through a set of `Document`."""
+  allDocuments(
+    """Only read the first `n` values of the set."""
+    first: Int
+
+    """Only read the last `n` values of the set."""
+    last: Int
+
+    """
+    Skip the first `n` values from our `after` cursor, an alternative to cursor
+    based pagination. May not be used with `last`.
+    """
+    offset: Int
+
+    """Read all values in the set before (above) this cursor."""
+    before: Cursor
+
+    """Read all values in the set after (below) this cursor."""
+    after: Cursor
+
+    """The method to use when ordering `Document`."""
+    orderBy: [DocumentsOrderBy!] = [PRIMARY_KEY_ASC]
+
+    """
+    A condition to be used in determining which values should be returned by the collection.
+    """
+    condition: DocumentCondition
+  ): DocumentsConnection
+
+  """Reads a set of `Document`."""
+  allDocumentsList(
+    """Only read the first `n` values of the set."""
+    first: Int
+
+    """Skip the first `n` values."""
+    offset: Int
+
+    """The method to use when ordering `Document`."""
+    orderBy: [DocumentsOrderBy!]
+
+    """
+    A condition to be used in determining which values should be returned by the collection.
+    """
+    condition: DocumentCondition
+  ): [Document!]
+
+  """Reads and enables pagination through a set of `Question`."""
+  allQuestions(
+    """Only read the first `n` values of the set."""
+    first: Int
+
+    """Only read the last `n` values of the set."""
+    last: Int
+
+    """
+    Skip the first `n` values from our `after` cursor, an alternative to cursor
+    based pagination. May not be used with `last`.
+    """
+    offset: Int
+
+    """Read all values in the set before (above) this cursor."""
+    before: Cursor
+
+    """Read all values in the set after (below) this cursor."""
+    after: Cursor
+
+    """The method to use when ordering `Question`."""
+    orderBy: [QuestionsOrderBy!] = [PRIMARY_KEY_ASC]
+
+    """
+    A condition to be used in determining which values should be returned by the collection.
+    """
+    condition: QuestionCondition
+  ): QuestionsConnection
+
+  """Reads a set of `Question`."""
+  allQuestionsList(
+    """Only read the first `n` values of the set."""
+    first: Int
+
+    """Skip the first `n` values."""
+    offset: Int
+
+    """The method to use when ordering `Question`."""
+    orderBy: [QuestionsOrderBy!]
+
+    """
+    A condition to be used in determining which values should be returned by the collection.
+    """
+    condition: QuestionCondition
+  ): [Question!]
+
+  """Reads and enables pagination through a set of `User`."""
+  allUsers(
+    """Only read the first `n` values of the set."""
+    first: Int
+
+    """Only read the last `n` values of the set."""
+    last: Int
+
+    """
+    Skip the first `n` values from our `after` cursor, an alternative to cursor
+    based pagination. May not be used with `last`.
+    """
+    offset: Int
+
+    """Read all values in the set before (above) this cursor."""
+    before: Cursor
+
+    """Read all values in the set after (below) this cursor."""
+    after: Cursor
+
+    """The method to use when ordering `User`."""
+    orderBy: [UsersOrderBy!] = [PRIMARY_KEY_ASC]
+
+    """
+    A condition to be used in determining which values should be returned by the collection.
+    """
+    condition: UserCondition
+  ): UsersConnection
+
+  """Reads a set of `User`."""
+  allUsersList(
+    """Only read the first `n` values of the set."""
+    first: Int
+
+    """Skip the first `n` values."""
+    offset: Int
+
+    """The method to use when ordering `User`."""
+    orderBy: [UsersOrderBy!]
+
+    """
+    A condition to be used in determining which values should be returned by the collection.
+    """
+    condition: UserCondition
+  ): [User!]
+
+  """Reads and enables pagination through a set of `UserAnswer`."""
+  allUserAnswers(
+    """Only read the first `n` values of the set."""
+    first: Int
+
+    """Only read the last `n` values of the set."""
+    last: Int
+
+    """
+    Skip the first `n` values from our `after` cursor, an alternative to cursor
+    based pagination. May not be used with `last`.
+    """
+    offset: Int
+
+    """Read all values in the set before (above) this cursor."""
+    before: Cursor
+
+    """Read all values in the set after (below) this cursor."""
+    after: Cursor
+
+    """The method to use when ordering `UserAnswer`."""
+    orderBy: [UserAnswersOrderBy!] = [PRIMARY_KEY_ASC]
+
+    """
+    A condition to be used in determining which values should be returned by the collection.
+    """
+    condition: UserAnswerCondition
+  ): UserAnswersConnection
+
+  """Reads a set of `UserAnswer`."""
+  allUserAnswersList(
+    """Only read the first `n` values of the set."""
+    first: Int
+
+    """Skip the first `n` values."""
+    offset: Int
+
+    """The method to use when ordering `UserAnswer`."""
+    orderBy: [UserAnswersOrderBy!]
+
+    """
+    A condition to be used in determining which values should be returned by the collection.
+    """
+    condition: UserAnswerCondition
+  ): [UserAnswer!]
+
+  """Reads and enables pagination through a set of `_PrismaMigration`."""
+  allPrismaMigrations(
+    """Only read the first `n` values of the set."""
+    first: Int
+
+    """Only read the last `n` values of the set."""
+    last: Int
+
+    """
+    Skip the first `n` values from our `after` cursor, an alternative to cursor
+    based pagination. May not be used with `last`.
+    """
+    offset: Int
+
+    """Read all values in the set before (above) this cursor."""
+    before: Cursor
+
+    """Read all values in the set after (below) this cursor."""
+    after: Cursor
+
+    """The method to use when ordering `_PrismaMigration`."""
+    orderBy: [_PrismaMigrationsOrderBy!] = [PRIMARY_KEY_ASC]
+
+    """
+    A condition to be used in determining which values should be returned by the collection.
+    """
+    condition: _PrismaMigrationCondition
+  ): _PrismaMigrationsConnection
+
+  """Reads a set of `_PrismaMigration`."""
+  allPrismaMigrationsList(
+    """Only read the first `n` values of the set."""
+    first: Int
+
+    """Skip the first `n` values."""
+    offset: Int
+
+    """The method to use when ordering `_PrismaMigration`."""
+    orderBy: [_PrismaMigrationsOrderBy!]
+
+    """
+    A condition to be used in determining which values should be returned by the collection.
+    """
+    condition: _PrismaMigrationCondition
+  ): [_PrismaMigration!]
+  answerById(id: String!): Answer
+  documentById(id: String!): Document
+  questionById(id: String!): Question
+  userById(id: String!): User
+  userAnswerById(id: String!): UserAnswer
+  _prismaMigrationById(id: String!): _PrismaMigration
+
+  """Reads a single `Answer` using its globally unique `ID`."""
+  answer(
+    """The globally unique `ID` to be used in selecting a single `Answer`."""
+    nodeId: ID!
+  ): Answer
+
+  """Reads a single `Document` using its globally unique `ID`."""
+  document(
+    """The globally unique `ID` to be used in selecting a single `Document`."""
+    nodeId: ID!
+  ): Document
+
+  """Reads a single `Question` using its globally unique `ID`."""
+  question(
+    """The globally unique `ID` to be used in selecting a single `Question`."""
+    nodeId: ID!
+  ): Question
+
+  """Reads a single `User` using its globally unique `ID`."""
+  user(
+    """The globally unique `ID` to be used in selecting a single `User`."""
+    nodeId: ID!
+  ): User
+
+  """Reads a single `UserAnswer` using its globally unique `ID`."""
+  userAnswer(
+    """
+    The globally unique `ID` to be used in selecting a single `UserAnswer`.
+    """
+    nodeId: ID!
+  ): UserAnswer
+
+  """Reads a single `_PrismaMigration` using its globally unique `ID`."""
+  _prismaMigration(
+    """
+    The globally unique `ID` to be used in selecting a single `_PrismaMigration`.
+    """
+    nodeId: ID!
+  ): _PrismaMigration
+}
+
+"""An object with a globally unique `ID`."""
+interface Node {
+  """
+  A globally unique identifier. Can be used in various places throughout the system to identify this single value.
+  """
+  nodeId: ID!
+}
+
+"""A connection to a list of `Answer` values."""
+type AnswersConnection {
+  """A list of `Answer` objects."""
+  nodes: [Answer!]!
+
+  """
+  A list of edges which contains the `Answer` and cursor to aid in pagination.
+  """
+  edges: [AnswersEdge!]!
+
+  """Information to aid in pagination."""
+  pageInfo: PageInfo!
+
+  """The count of *all* `Answer` you could get from the connection."""
+  totalCount: Int!
+}
+
+type Answer implements Node {
+  """
+  A globally unique identifier. Can be used in various places throughout the system to identify this single value.
+  """
+  nodeId: ID!
+  id: String!
+  questionId: String!
+  text: String!
+  isCorrect: Boolean!
+  point: Int!
+
+  """Reads a single `Question` that is related to this `Answer`."""
+  questionByQuestionId: Question
+
+  """Reads and enables pagination through a set of `UserAnswer`."""
+  userAnswersByAnswerId(
+    """Only read the first `n` values of the set."""
+    first: Int
+
+    """Only read the last `n` values of the set."""
+    last: Int
+
+    """
+    Skip the first `n` values from our `after` cursor, an alternative to cursor
+    based pagination. May not be used with `last`.
+    """
+    offset: Int
+
+    """Read all values in the set before (above) this cursor."""
+    before: Cursor
+
+    """Read all values in the set after (below) this cursor."""
+    after: Cursor
+
+    """The method to use when ordering `UserAnswer`."""
+    orderBy: [UserAnswersOrderBy!] = [PRIMARY_KEY_ASC]
+
+    """
+    A condition to be used in determining which values should be returned by the collection.
+    """
+    condition: UserAnswerCondition
+  ): UserAnswersConnection!
+
+  """Reads and enables pagination through a set of `UserAnswer`."""
+  userAnswersByAnswerIdList(
+    """Only read the first `n` values of the set."""
+    first: Int
+
+    """Skip the first `n` values."""
+    offset: Int
+
+    """The method to use when ordering `UserAnswer`."""
+    orderBy: [UserAnswersOrderBy!]
+
+    """
+    A condition to be used in determining which values should be returned by the collection.
+    """
+    condition: UserAnswerCondition
+  ): [UserAnswer!]!
+}
+
+type Question implements Node {
+  """
+  A globally unique identifier. Can be used in various places throughout the system to identify this single value.
+  """
+  nodeId: ID!
+  id: String!
+  documentId: String!
+  text: String!
+  createdAt: Datetime!
+
+  """Reads a single `Document` that is related to this `Question`."""
+  documentByDocumentId: Document
+
+  """Reads and enables pagination through a set of `Answer`."""
+  answersByQuestionId(
+    """Only read the first `n` values of the set."""
+    first: Int
+
+    """Only read the last `n` values of the set."""
+    last: Int
+
+    """
+    Skip the first `n` values from our `after` cursor, an alternative to cursor
+    based pagination. May not be used with `last`.
+    """
+    offset: Int
+
+    """Read all values in the set before (above) this cursor."""
+    before: Cursor
+
+    """Read all values in the set after (below) this cursor."""
+    after: Cursor
+
+    """The method to use when ordering `Answer`."""
+    orderBy: [AnswersOrderBy!] = [PRIMARY_KEY_ASC]
+
+    """
+    A condition to be used in determining which values should be returned by the collection.
+    """
+    condition: AnswerCondition
+  ): AnswersConnection!
+
+  """Reads and enables pagination through a set of `Answer`."""
+  answersByQuestionIdList(
+    """Only read the first `n` values of the set."""
+    first: Int
+
+    """Skip the first `n` values."""
+    offset: Int
+
+    """The method to use when ordering `Answer`."""
+    orderBy: [AnswersOrderBy!]
+
+    """
+    A condition to be used in determining which values should be returned by the collection.
+    """
+    condition: AnswerCondition
+  ): [Answer!]!
+
+  """Reads and enables pagination through a set of `UserAnswer`."""
+  userAnswersByQuestionId(
+    """Only read the first `n` values of the set."""
+    first: Int
+
+    """Only read the last `n` values of the set."""
+    last: Int
+
+    """
+    Skip the first `n` values from our `after` cursor, an alternative to cursor
+    based pagination. May not be used with `last`.
+    """
+    offset: Int
+
+    """Read all values in the set before (above) this cursor."""
+    before: Cursor
+
+    """Read all values in the set after (below) this cursor."""
+    after: Cursor
+
+    """The method to use when ordering `UserAnswer`."""
+    orderBy: [UserAnswersOrderBy!] = [PRIMARY_KEY_ASC]
+
+    """
+    A condition to be used in determining which values should be returned by the collection.
+    """
+    condition: UserAnswerCondition
+  ): UserAnswersConnection!
+
+  """Reads and enables pagination through a set of `UserAnswer`."""
+  userAnswersByQuestionIdList(
+    """Only read the first `n` values of the set."""
+    first: Int
+
+    """Skip the first `n` values."""
+    offset: Int
+
+    """The method to use when ordering `UserAnswer`."""
+    orderBy: [UserAnswersOrderBy!]
+
+    """
+    A condition to be used in determining which values should be returned by the collection.
+    """
+    condition: UserAnswerCondition
+  ): [UserAnswer!]!
+}
+
+"""
+A point in time as described by the [ISO
+8601](https://en.wikipedia.org/wiki/ISO_8601) standard. May or may not include a timezone.
+"""
+scalar Datetime
+
+type Document implements Node {
+  """
+  A globally unique identifier. Can be used in various places throughout the system to identify this single value.
+  """
+  nodeId: ID!
+  id: String!
+  userId: String!
+  filename: String!
+  url: String!
+  status: Status!
+  createdAt: Datetime!
+
+  """Reads a single `User` that is related to this `Document`."""
+  userByUserId: User
+
+  """Reads and enables pagination through a set of `Question`."""
+  questionsByDocumentId(
+    """Only read the first `n` values of the set."""
+    first: Int
+
+    """Only read the last `n` values of the set."""
+    last: Int
+
+    """
+    Skip the first `n` values from our `after` cursor, an alternative to cursor
+    based pagination. May not be used with `last`.
+    """
+    offset: Int
+
+    """Read all values in the set before (above) this cursor."""
+    before: Cursor
+
+    """Read all values in the set after (below) this cursor."""
+    after: Cursor
+
+    """The method to use when ordering `Question`."""
+    orderBy: [QuestionsOrderBy!] = [PRIMARY_KEY_ASC]
+
+    """
+    A condition to be used in determining which values should be returned by the collection.
+    """
+    condition: QuestionCondition
+  ): QuestionsConnection!
+
+  """Reads and enables pagination through a set of `Question`."""
+  questionsByDocumentIdList(
+    """Only read the first `n` values of the set."""
+    first: Int
+
+    """Skip the first `n` values."""
+    offset: Int
+
+    """The method to use when ordering `Question`."""
+    orderBy: [QuestionsOrderBy!]
+
+    """
+    A condition to be used in determining which values should be returned by the collection.
+    """
+    condition: QuestionCondition
+  ): [Question!]!
+}
+
+enum Status {
+  PROCESSING
+  READY
+  FAILED
+}
+
+type User implements Node {
+  """
+  A globally unique identifier. Can be used in various places throughout the system to identify this single value.
+  """
+  nodeId: ID!
+  id: String!
+  email: String!
+  password: String
+
+  """Reads and enables pagination through a set of `Document`."""
+  documentsByUserId(
+    """Only read the first `n` values of the set."""
+    first: Int
+
+    """Only read the last `n` values of the set."""
+    last: Int
+
+    """
+    Skip the first `n` values from our `after` cursor, an alternative to cursor
+    based pagination. May not be used with `last`.
+    """
+    offset: Int
+
+    """Read all values in the set before (above) this cursor."""
+    before: Cursor
+
+    """Read all values in the set after (below) this cursor."""
+    after: Cursor
+
+    """The method to use when ordering `Document`."""
+    orderBy: [DocumentsOrderBy!] = [PRIMARY_KEY_ASC]
+
+    """
+    A condition to be used in determining which values should be returned by the collection.
+    """
+    condition: DocumentCondition
+  ): DocumentsConnection!
+
+  """Reads and enables pagination through a set of `Document`."""
+  documentsByUserIdList(
+    """Only read the first `n` values of the set."""
+    first: Int
+
+    """Skip the first `n` values."""
+    offset: Int
+
+    """The method to use when ordering `Document`."""
+    orderBy: [DocumentsOrderBy!]
+
+    """
+    A condition to be used in determining which values should be returned by the collection.
+    """
+    condition: DocumentCondition
+  ): [Document!]!
+
+  """Reads and enables pagination through a set of `UserAnswer`."""
+  userAnswersByUserId(
+    """Only read the first `n` values of the set."""
+    first: Int
+
+    """Only read the last `n` values of the set."""
+    last: Int
+
+    """
+    Skip the first `n` values from our `after` cursor, an alternative to cursor
+    based pagination. May not be used with `last`.
+    """
+    offset: Int
+
+    """Read all values in the set before (above) this cursor."""
+    before: Cursor
+
+    """Read all values in the set after (below) this cursor."""
+    after: Cursor
+
+    """The method to use when ordering `UserAnswer`."""
+    orderBy: [UserAnswersOrderBy!] = [PRIMARY_KEY_ASC]
+
+    """
+    A condition to be used in determining which values should be returned by the collection.
+    """
+    condition: UserAnswerCondition
+  ): UserAnswersConnection!
+
+  """Reads and enables pagination through a set of `UserAnswer`."""
+  userAnswersByUserIdList(
+    """Only read the first `n` values of the set."""
+    first: Int
+
+    """Skip the first `n` values."""
+    offset: Int
+
+    """The method to use when ordering `UserAnswer`."""
+    orderBy: [UserAnswersOrderBy!]
+
+    """
+    A condition to be used in determining which values should be returned by the collection.
+    """
+    condition: UserAnswerCondition
+  ): [UserAnswer!]!
+}
+
+"""A connection to a list of `Document` values."""
+type DocumentsConnection {
+  """A list of `Document` objects."""
+  nodes: [Document!]!
+
+  """
+  A list of edges which contains the `Document` and cursor to aid in pagination.
+  """
+  edges: [DocumentsEdge!]!
+
+  """Information to aid in pagination."""
+  pageInfo: PageInfo!
+
+  """The count of *all* `Document` you could get from the connection."""
+  totalCount: Int!
+}
+
+"""A `Document` edge in the connection."""
+type DocumentsEdge {
+  """A cursor for use in pagination."""
+  cursor: Cursor
+
+  """The `Document` at the end of the edge."""
+  node: Document!
+}
+
+"""A location in a connection that can be used for resuming pagination."""
+scalar Cursor
+
+"""Information about pagination in a connection."""
+type PageInfo {
+  """When paginating forwards, are there more items?"""
+  hasNextPage: Boolean!
+
+  """When paginating backwards, are there more items?"""
+  hasPreviousPage: Boolean!
+
+  """When paginating backwards, the cursor to continue."""
+  startCursor: Cursor
+
+  """When paginating forwards, the cursor to continue."""
+  endCursor: Cursor
+}
+
+"""Methods to use when ordering `Document`."""
+enum DocumentsOrderBy {
+  NATURAL
+  ID_ASC
+  ID_DESC
+  USER_ID_ASC
+  USER_ID_DESC
+  PRIMARY_KEY_ASC
+  PRIMARY_KEY_DESC
+}
+
+"""
+A condition to be used against `Document` object types. All fields are tested
+for equality and combined with a logical ‘and.’
+"""
+input DocumentCondition {
+  """Checks for equality with the object’s `id` field."""
+  id: String
+
+  """Checks for equality with the object’s `userId` field."""
+  userId: String
+}
+
+"""A connection to a list of `UserAnswer` values."""
+type UserAnswersConnection {
+  """A list of `UserAnswer` objects."""
+  nodes: [UserAnswer!]!
+
+  """
+  A list of edges which contains the `UserAnswer` and cursor to aid in pagination.
+  """
+  edges: [UserAnswersEdge!]!
+
+  """Information to aid in pagination."""
+  pageInfo: PageInfo!
+
+  """The count of *all* `UserAnswer` you could get from the connection."""
+  totalCount: Int!
+}
+
+type UserAnswer implements Node {
+  """
+  A globally unique identifier. Can be used in various places throughout the system to identify this single value.
+  """
+  nodeId: ID!
+  id: String!
+  userId: String!
+  questionId: String!
+  answerId: String!
+  createdAt: Datetime!
+
+  """Reads a single `User` that is related to this `UserAnswer`."""
+  userByUserId: User
+
+  """Reads a single `Question` that is related to this `UserAnswer`."""
+  questionByQuestionId: Question
+
+  """Reads a single `Answer` that is related to this `UserAnswer`."""
+  answerByAnswerId: Answer
+}
+
+"""A `UserAnswer` edge in the connection."""
+type UserAnswersEdge {
+  """A cursor for use in pagination."""
+  cursor: Cursor
+
+  """The `UserAnswer` at the end of the edge."""
+  node: UserAnswer!
+}
+
+"""Methods to use when ordering `UserAnswer`."""
+enum UserAnswersOrderBy {
+  NATURAL
+  ID_ASC
+  ID_DESC
+  USER_ID_ASC
+  USER_ID_DESC
+  QUESTION_ID_ASC
+  QUESTION_ID_DESC
+  ANSWER_ID_ASC
+  ANSWER_ID_DESC
+  PRIMARY_KEY_ASC
+  PRIMARY_KEY_DESC
+}
+
+"""
+A condition to be used against `UserAnswer` object types. All fields are tested
+for equality and combined with a logical ‘and.’
+"""
+input UserAnswerCondition {
+  """Checks for equality with the object’s `id` field."""
+  id: String
+
+  """Checks for equality with the object’s `userId` field."""
+  userId: String
+
+  """Checks for equality with the object’s `questionId` field."""
+  questionId: String
+
+  """Checks for equality with the object’s `answerId` field."""
+  answerId: String
+}
+
+"""A connection to a list of `Question` values."""
+type QuestionsConnection {
+  """A list of `Question` objects."""
+  nodes: [Question!]!
+
+  """
+  A list of edges which contains the `Question` and cursor to aid in pagination.
+  """
+  edges: [QuestionsEdge!]!
+
+  """Information to aid in pagination."""
+  pageInfo: PageInfo!
+
+  """The count of *all* `Question` you could get from the connection."""
+  totalCount: Int!
+}
+
+"""A `Question` edge in the connection."""
+type QuestionsEdge {
+  """A cursor for use in pagination."""
+  cursor: Cursor
+
+  """The `Question` at the end of the edge."""
+  node: Question!
+}
+
+"""Methods to use when ordering `Question`."""
+enum QuestionsOrderBy {
+  NATURAL
+  ID_ASC
+  ID_DESC
+  DOCUMENT_ID_ASC
+  DOCUMENT_ID_DESC
+  PRIMARY_KEY_ASC
+  PRIMARY_KEY_DESC
+}
+
+"""
+A condition to be used against `Question` object types. All fields are tested
+for equality and combined with a logical ‘and.’
+"""
+input QuestionCondition {
+  """Checks for equality with the object’s `id` field."""
+  id: String
+
+  """Checks for equality with the object’s `documentId` field."""
+  documentId: String
+}
+
+"""Methods to use when ordering `Answer`."""
+enum AnswersOrderBy {
+  NATURAL
+  ID_ASC
+  ID_DESC
+  QUESTION_ID_ASC
+  QUESTION_ID_DESC
+  PRIMARY_KEY_ASC
+  PRIMARY_KEY_DESC
+}
+
+"""
+A condition to be used against `Answer` object types. All fields are tested for equality and combined with a logical ‘and.’
+"""
+input AnswerCondition {
+  """Checks for equality with the object’s `id` field."""
+  id: String
+
+  """Checks for equality with the object’s `questionId` field."""
+  questionId: String
+}
+
+"""A `Answer` edge in the connection."""
+type AnswersEdge {
+  """A cursor for use in pagination."""
+  cursor: Cursor
+
+  """The `Answer` at the end of the edge."""
+  node: Answer!
+}
+
+"""A connection to a list of `User` values."""
+type UsersConnection {
+  """A list of `User` objects."""
+  nodes: [User!]!
+
+  """
+  A list of edges which contains the `User` and cursor to aid in pagination.
+  """
+  edges: [UsersEdge!]!
+
+  """Information to aid in pagination."""
+  pageInfo: PageInfo!
+
+  """The count of *all* `User` you could get from the connection."""
+  totalCount: Int!
+}
+
+"""A `User` edge in the connection."""
+type UsersEdge {
+  """A cursor for use in pagination."""
+  cursor: Cursor
+
+  """The `User` at the end of the edge."""
+  node: User!
+}
+
+"""Methods to use when ordering `User`."""
+enum UsersOrderBy {
+  NATURAL
+  ID_ASC
+  ID_DESC
+  EMAIL_ASC
+  EMAIL_DESC
+  PRIMARY_KEY_ASC
+  PRIMARY_KEY_DESC
+}
+
+"""
+A condition to be used against `User` object types. All fields are tested for equality and combined with a logical ‘and.’
+"""
+input UserCondition {
+  """Checks for equality with the object’s `id` field."""
+  id: String
+
+  """Checks for equality with the object’s `email` field."""
+  email: String
+}
+
+"""A connection to a list of `_PrismaMigration` values."""
+type _PrismaMigrationsConnection {
+  """A list of `_PrismaMigration` objects."""
+  nodes: [_PrismaMigration!]!
+
+  """
+  A list of edges which contains the `_PrismaMigration` and cursor to aid in pagination.
+  """
+  edges: [_PrismaMigrationsEdge!]!
+
+  """Information to aid in pagination."""
+  pageInfo: PageInfo!
+
+  """
+  The count of *all* `_PrismaMigration` you could get from the connection.
+  """
+  totalCount: Int!
+}
+
+type _PrismaMigration implements Node {
+  """
+  A globally unique identifier. Can be used in various places throughout the system to identify this single value.
+  """
+  nodeId: ID!
+  id: String!
+  checksum: String!
+  finishedAt: Datetime
+  migrationName: String!
+  logs: String
+  rolledBackAt: Datetime
+  startedAt: Datetime!
+  appliedStepsCount: Int!
+}
+
+"""A `_PrismaMigration` edge in the connection."""
+type _PrismaMigrationsEdge {
+  """A cursor for use in pagination."""
+  cursor: Cursor
+
+  """The `_PrismaMigration` at the end of the edge."""
+  node: _PrismaMigration!
+}
+
+"""Methods to use when ordering `_PrismaMigration`."""
+enum _PrismaMigrationsOrderBy {
+  NATURAL
+  ID_ASC
+  ID_DESC
+  PRIMARY_KEY_ASC
+  PRIMARY_KEY_DESC
+}
+
+"""
+A condition to be used against `_PrismaMigration` object types. All fields are
+tested for equality and combined with a logical ‘and.’
+"""
+input _PrismaMigrationCondition {
+  """Checks for equality with the object’s `id` field."""
+  id: String
+}
+
+"""
+The root mutation type which contains root level fields which mutate data.
+"""
+type Mutation {
+  """Creates a single `Answer`."""
+  createAnswer(
+    """
+    The exclusive input argument for this mutation. An object type, make sure to see documentation for this object’s fields.
+    """
+    input: CreateAnswerInput!
+  ): CreateAnswerPayload
+
+  """Creates a single `Document`."""
+  createDocument(
+    """
+    The exclusive input argument for this mutation. An object type, make sure to see documentation for this object’s fields.
+    """
+    input: CreateDocumentInput!
+  ): CreateDocumentPayload
+
+  """Creates a single `Question`."""
+  createQuestion(
+    """
+    The exclusive input argument for this mutation. An object type, make sure to see documentation for this object’s fields.
+    """
+    input: CreateQuestionInput!
+  ): CreateQuestionPayload
+
+  """Creates a single `User`."""
+  createUser(
+    """
+    The exclusive input argument for this mutation. An object type, make sure to see documentation for this object’s fields.
+    """
+    input: CreateUserInput!
+  ): CreateUserPayload
+
+  """Creates a single `UserAnswer`."""
+  createUserAnswer(
+    """
+    The exclusive input argument for this mutation. An object type, make sure to see documentation for this object’s fields.
+    """
+    input: CreateUserAnswerInput!
+  ): CreateUserAnswerPayload
+
+  """Creates a single `_PrismaMigration`."""
+  createPrismaMigration(
+    """
+    The exclusive input argument for this mutation. An object type, make sure to see documentation for this object’s fields.
+    """
+    input: CreatePrismaMigrationInput!
+  ): CreatePrismaMigrationPayload
+
+  """Updates a single `Answer` using its globally unique id and a patch."""
+  updateAnswer(
+    """
+    The exclusive input argument for this mutation. An object type, make sure to see documentation for this object’s fields.
+    """
+    input: UpdateAnswerInput!
+  ): UpdateAnswerPayload
+
+  """Updates a single `Answer` using a unique key and a patch."""
+  updateAnswerById(
+    """
+    The exclusive input argument for this mutation. An object type, make sure to see documentation for this object’s fields.
+    """
+    input: UpdateAnswerByIdInput!
+  ): UpdateAnswerPayload
+
+  """Updates a single `Document` using its globally unique id and a patch."""
+  updateDocument(
+    """
+    The exclusive input argument for this mutation. An object type, make sure to see documentation for this object’s fields.
+    """
+    input: UpdateDocumentInput!
+  ): UpdateDocumentPayload
+
+  """Updates a single `Document` using a unique key and a patch."""
+  updateDocumentById(
+    """
+    The exclusive input argument for this mutation. An object type, make sure to see documentation for this object’s fields.
+    """
+    input: UpdateDocumentByIdInput!
+  ): UpdateDocumentPayload
+
+  """Updates a single `Question` using its globally unique id and a patch."""
+  updateQuestion(
+    """
+    The exclusive input argument for this mutation. An object type, make sure to see documentation for this object’s fields.
+    """
+    input: UpdateQuestionInput!
+  ): UpdateQuestionPayload
+
+  """Updates a single `Question` using a unique key and a patch."""
+  updateQuestionById(
+    """
+    The exclusive input argument for this mutation. An object type, make sure to see documentation for this object’s fields.
+    """
+    input: UpdateQuestionByIdInput!
+  ): UpdateQuestionPayload
+
+  """Updates a single `User` using its globally unique id and a patch."""
+  updateUser(
+    """
+    The exclusive input argument for this mutation. An object type, make sure to see documentation for this object’s fields.
+    """
+    input: UpdateUserInput!
+  ): UpdateUserPayload
+
+  """Updates a single `User` using a unique key and a patch."""
+  updateUserById(
+    """
+    The exclusive input argument for this mutation. An object type, make sure to see documentation for this object’s fields.
+    """
+    input: UpdateUserByIdInput!
+  ): UpdateUserPayload
+
+  """
+  Updates a single `UserAnswer` using its globally unique id and a patch.
+  """
+  updateUserAnswer(
+    """
+    The exclusive input argument for this mutation. An object type, make sure to see documentation for this object’s fields.
+    """
+    input: UpdateUserAnswerInput!
+  ): UpdateUserAnswerPayload
+
+  """Updates a single `UserAnswer` using a unique key and a patch."""
+  updateUserAnswerById(
+    """
+    The exclusive input argument for this mutation. An object type, make sure to see documentation for this object’s fields.
+    """
+    input: UpdateUserAnswerByIdInput!
+  ): UpdateUserAnswerPayload
+
+  """
+  Updates a single `_PrismaMigration` using its globally unique id and a patch.
+  """
+  updatePrismaMigration(
+    """
+    The exclusive input argument for this mutation. An object type, make sure to see documentation for this object’s fields.
+    """
+    input: UpdatePrismaMigrationInput!
+  ): UpdatePrismaMigrationPayload
+
+  """Updates a single `_PrismaMigration` using a unique key and a patch."""
+  updatePrismaMigrationById(
+    """
+    The exclusive input argument for this mutation. An object type, make sure to see documentation for this object’s fields.
+    """
+    input: UpdatePrismaMigrationByIdInput!
+  ): UpdatePrismaMigrationPayload
+
+  """Deletes a single `Answer` using its globally unique id."""
+  deleteAnswer(
+    """
+    The exclusive input argument for this mutation. An object type, make sure to see documentation for this object’s fields.
+    """
+    input: DeleteAnswerInput!
+  ): DeleteAnswerPayload
+
+  """Deletes a single `Answer` using a unique key."""
+  deleteAnswerById(
+    """
+    The exclusive input argument for this mutation. An object type, make sure to see documentation for this object’s fields.
+    """
+    input: DeleteAnswerByIdInput!
+  ): DeleteAnswerPayload
+
+  """Deletes a single `Document` using its globally unique id."""
+  deleteDocument(
+    """
+    The exclusive input argument for this mutation. An object type, make sure to see documentation for this object’s fields.
+    """
+    input: DeleteDocumentInput!
+  ): DeleteDocumentPayload
+
+  """Deletes a single `Document` using a unique key."""
+  deleteDocumentById(
+    """
+    The exclusive input argument for this mutation. An object type, make sure to see documentation for this object’s fields.
+    """
+    input: DeleteDocumentByIdInput!
+  ): DeleteDocumentPayload
+
+  """Deletes a single `Question` using its globally unique id."""
+  deleteQuestion(
+    """
+    The exclusive input argument for this mutation. An object type, make sure to see documentation for this object’s fields.
+    """
+    input: DeleteQuestionInput!
+  ): DeleteQuestionPayload
+
+  """Deletes a single `Question` using a unique key."""
+  deleteQuestionById(
+    """
+    The exclusive input argument for this mutation. An object type, make sure to see documentation for this object’s fields.
+    """
+    input: DeleteQuestionByIdInput!
+  ): DeleteQuestionPayload
+
+  """Deletes a single `User` using its globally unique id."""
+  deleteUser(
+    """
+    The exclusive input argument for this mutation. An object type, make sure to see documentation for this object’s fields.
+    """
+    input: DeleteUserInput!
+  ): DeleteUserPayload
+
+  """Deletes a single `User` using a unique key."""
+  deleteUserById(
+    """
+    The exclusive input argument for this mutation. An object type, make sure to see documentation for this object’s fields.
+    """
+    input: DeleteUserByIdInput!
+  ): DeleteUserPayload
+
+  """Deletes a single `UserAnswer` using its globally unique id."""
+  deleteUserAnswer(
+    """
+    The exclusive input argument for this mutation. An object type, make sure to see documentation for this object’s fields.
+    """
+    input: DeleteUserAnswerInput!
+  ): DeleteUserAnswerPayload
+
+  """Deletes a single `UserAnswer` using a unique key."""
+  deleteUserAnswerById(
+    """
+    The exclusive input argument for this mutation. An object type, make sure to see documentation for this object’s fields.
+    """
+    input: DeleteUserAnswerByIdInput!
+  ): DeleteUserAnswerPayload
+
+  """Deletes a single `_PrismaMigration` using its globally unique id."""
+  deletePrismaMigration(
+    """
+    The exclusive input argument for this mutation. An object type, make sure to see documentation for this object’s fields.
+    """
+    input: DeletePrismaMigrationInput!
+  ): DeletePrismaMigrationPayload
+
+  """Deletes a single `_PrismaMigration` using a unique key."""
+  deletePrismaMigrationById(
+    """
+    The exclusive input argument for this mutation. An object type, make sure to see documentation for this object’s fields.
+    """
+    input: DeletePrismaMigrationByIdInput!
+  ): DeletePrismaMigrationPayload
+  _fileUpload(
+    """
+    The exclusive input argument for this mutation. An object type, make sure to see documentation for this object’s fields.
+    """
+    input: _FileUploadInput!
+  ): _FileUploadPayload
+}
+
+"""The output of our create `Answer` mutation."""
+type CreateAnswerPayload {
+  """
+  The exact same `clientMutationId` that was provided in the mutation input,
+  unchanged and unused. May be used by a client to track mutations.
+  """
+  clientMutationId: String
+
+  """The `Answer` that was created by this mutation."""
+  answer: Answer
+
+  """
+  Our root query field type. Allows us to run any query from our mutation payload.
+  """
+  query: Query
+
+  """Reads a single `Question` that is related to this `Answer`."""
+  questionByQuestionId: Question
+
+  """An edge for our `Answer`. May be used by Relay 1."""
+  answerEdge(
+    """The method to use when ordering `Answer`."""
+    orderBy: [AnswersOrderBy!] = [PRIMARY_KEY_ASC]
+  ): AnswersEdge
+}
+
+"""All input for the create `Answer` mutation."""
+input CreateAnswerInput {
+  """
+  An arbitrary string value with no semantic meaning. Will be included in the
+  payload verbatim. May be used to track mutations by the client.
+  """
+  clientMutationId: String
+
+  """The `Answer` to be created by this mutation."""
+  answer: AnswerInput!
+}
+
+"""An input for mutations affecting `Answer`"""
+input AnswerInput {
+  id: String!
+  questionId: String!
+  text: String!
+  isCorrect: Boolean!
+  point: Int!
+}
+
+"""The output of our create `Document` mutation."""
+type CreateDocumentPayload {
+  """
+  The exact same `clientMutationId` that was provided in the mutation input,
+  unchanged and unused. May be used by a client to track mutations.
+  """
+  clientMutationId: String
+
+  """The `Document` that was created by this mutation."""
+  document: Document
+
+  """
+  Our root query field type. Allows us to run any query from our mutation payload.
+  """
+  query: Query
+
+  """Reads a single `User` that is related to this `Document`."""
+  userByUserId: User
+
+  """An edge for our `Document`. May be used by Relay 1."""
+  documentEdge(
+    """The method to use when ordering `Document`."""
+    orderBy: [DocumentsOrderBy!] = [PRIMARY_KEY_ASC]
+  ): DocumentsEdge
+}
+
+"""All input for the create `Document` mutation."""
+input CreateDocumentInput {
+  """
+  An arbitrary string value with no semantic meaning. Will be included in the
+  payload verbatim. May be used to track mutations by the client.
+  """
+  clientMutationId: String
+
+  """The `Document` to be created by this mutation."""
+  document: DocumentInput!
+}
+
+"""An input for mutations affecting `Document`"""
+input DocumentInput {
+  id: String!
+  userId: String!
+  filename: String!
+  url: String!
+  status: Status!
+  createdAt: Datetime
+}
+
+"""The output of our create `Question` mutation."""
+type CreateQuestionPayload {
+  """
+  The exact same `clientMutationId` that was provided in the mutation input,
+  unchanged and unused. May be used by a client to track mutations.
+  """
+  clientMutationId: String
+
+  """The `Question` that was created by this mutation."""
+  question: Question
+
+  """
+  Our root query field type. Allows us to run any query from our mutation payload.
+  """
+  query: Query
+
+  """Reads a single `Document` that is related to this `Question`."""
+  documentByDocumentId: Document
+
+  """An edge for our `Question`. May be used by Relay 1."""
+  questionEdge(
+    """The method to use when ordering `Question`."""
+    orderBy: [QuestionsOrderBy!] = [PRIMARY_KEY_ASC]
+  ): QuestionsEdge
+}
+
+"""All input for the create `Question` mutation."""
+input CreateQuestionInput {
+  """
+  An arbitrary string value with no semantic meaning. Will be included in the
+  payload verbatim. May be used to track mutations by the client.
+  """
+  clientMutationId: String
+
+  """The `Question` to be created by this mutation."""
+  question: QuestionInput!
+}
+
+"""An input for mutations affecting `Question`"""
+input QuestionInput {
+  id: String!
+  documentId: String!
+  text: String!
+  createdAt: Datetime
+}
+
+"""The output of our create `User` mutation."""
+type CreateUserPayload {
+  """
+  The exact same `clientMutationId` that was provided in the mutation input,
+  unchanged and unused. May be used by a client to track mutations.
+  """
+  clientMutationId: String
+
+  """The `User` that was created by this mutation."""
+  user: User
+
+  """
+  Our root query field type. Allows us to run any query from our mutation payload.
+  """
+  query: Query
+
+  """An edge for our `User`. May be used by Relay 1."""
+  userEdge(
+    """The method to use when ordering `User`."""
+    orderBy: [UsersOrderBy!] = [PRIMARY_KEY_ASC]
+  ): UsersEdge
+}
+
+"""All input for the create `User` mutation."""
+input CreateUserInput {
+  """
+  An arbitrary string value with no semantic meaning. Will be included in the
+  payload verbatim. May be used to track mutations by the client.
+  """
+  clientMutationId: String
+
+  """The `User` to be created by this mutation."""
+  user: UserInput!
+}
+
+"""An input for mutations affecting `User`"""
+input UserInput {
+  id: String!
+  email: String!
+  password: String
+}
+
+"""The output of our create `UserAnswer` mutation."""
+type CreateUserAnswerPayload {
+  """
+  The exact same `clientMutationId` that was provided in the mutation input,
+  unchanged and unused. May be used by a client to track mutations.
+  """
+  clientMutationId: String
+
+  """The `UserAnswer` that was created by this mutation."""
+  userAnswer: UserAnswer
+
+  """
+  Our root query field type. Allows us to run any query from our mutation payload.
+  """
+  query: Query
+
+  """Reads a single `User` that is related to this `UserAnswer`."""
+  userByUserId: User
+
+  """Reads a single `Question` that is related to this `UserAnswer`."""
+  questionByQuestionId: Question
+
+  """Reads a single `Answer` that is related to this `UserAnswer`."""
+  answerByAnswerId: Answer
+
+  """An edge for our `UserAnswer`. May be used by Relay 1."""
+  userAnswerEdge(
+    """The method to use when ordering `UserAnswer`."""
+    orderBy: [UserAnswersOrderBy!] = [PRIMARY_KEY_ASC]
+  ): UserAnswersEdge
+}
+
+"""All input for the create `UserAnswer` mutation."""
+input CreateUserAnswerInput {
+  """
+  An arbitrary string value with no semantic meaning. Will be included in the
+  payload verbatim. May be used to track mutations by the client.
+  """
+  clientMutationId: String
+
+  """The `UserAnswer` to be created by this mutation."""
+  userAnswer: UserAnswerInput!
+}
+
+"""An input for mutations affecting `UserAnswer`"""
+input UserAnswerInput {
+  id: String!
+  userId: String!
+  questionId: String!
+  answerId: String!
+  createdAt: Datetime
+}
+
+"""The output of our create `_PrismaMigration` mutation."""
+type CreatePrismaMigrationPayload {
+  """
+  The exact same `clientMutationId` that was provided in the mutation input,
+  unchanged and unused. May be used by a client to track mutations.
+  """
+  clientMutationId: String
+
+  """The `_PrismaMigration` that was created by this mutation."""
+  _prismaMigration: _PrismaMigration
+
+  """
+  Our root query field type. Allows us to run any query from our mutation payload.
+  """
+  query: Query
+
+  """An edge for our `_PrismaMigration`. May be used by Relay 1."""
+  _prismaMigrationEdge(
+    """The method to use when ordering `_PrismaMigration`."""
+    orderBy: [_PrismaMigrationsOrderBy!] = [PRIMARY_KEY_ASC]
+  ): _PrismaMigrationsEdge
+}
+
+"""All input for the create `_PrismaMigration` mutation."""
+input CreatePrismaMigrationInput {
+  """
+  An arbitrary string value with no semantic meaning. Will be included in the
+  payload verbatim. May be used to track mutations by the client.
+  """
+  clientMutationId: String
+
+  """The `_PrismaMigration` to be created by this mutation."""
+  _prismaMigration: _PrismaMigrationInput!
+}
+
+"""An input for mutations affecting `_PrismaMigration`"""
+input _PrismaMigrationInput {
+  id: String!
+  checksum: String!
+  finishedAt: Datetime
+  migrationName: String!
+  logs: String
+  rolledBackAt: Datetime
+  startedAt: Datetime
+  appliedStepsCount: Int
+}
+
+"""The output of our update `Answer` mutation."""
+type UpdateAnswerPayload {
+  """
+  The exact same `clientMutationId` that was provided in the mutation input,
+  unchanged and unused. May be used by a client to track mutations.
+  """
+  clientMutationId: String
+
+  """The `Answer` that was updated by this mutation."""
+  answer: Answer
+
+  """
+  Our root query field type. Allows us to run any query from our mutation payload.
+  """
+  query: Query
+
+  """Reads a single `Question` that is related to this `Answer`."""
+  questionByQuestionId: Question
+
+  """An edge for our `Answer`. May be used by Relay 1."""
+  answerEdge(
+    """The method to use when ordering `Answer`."""
+    orderBy: [AnswersOrderBy!] = [PRIMARY_KEY_ASC]
+  ): AnswersEdge
+}
+
+"""All input for the `updateAnswer` mutation."""
+input UpdateAnswerInput {
+  """
+  An arbitrary string value with no semantic meaning. Will be included in the
+  payload verbatim. May be used to track mutations by the client.
+  """
+  clientMutationId: String
+
+  """
+  The globally unique `ID` which will identify a single `Answer` to be updated.
+  """
+  nodeId: ID!
+
+  """
+  An object where the defined keys will be set on the `Answer` being updated.
+  """
+  answerPatch: AnswerPatch!
+}
+
+"""
+Represents an update to a `Answer`. Fields that are set will be updated.
+"""
+input AnswerPatch {
+  id: String
+  questionId: String
+  text: String
+  isCorrect: Boolean
+  point: Int
+}
+
+"""All input for the `updateAnswerById` mutation."""
+input UpdateAnswerByIdInput {
+  """
+  An arbitrary string value with no semantic meaning. Will be included in the
+  payload verbatim. May be used to track mutations by the client.
+  """
+  clientMutationId: String
+
+  """
+  An object where the defined keys will be set on the `Answer` being updated.
+  """
+  answerPatch: AnswerPatch!
+  id: String!
+}
+
+"""The output of our update `Document` mutation."""
+type UpdateDocumentPayload {
+  """
+  The exact same `clientMutationId` that was provided in the mutation input,
+  unchanged and unused. May be used by a client to track mutations.
+  """
+  clientMutationId: String
+
+  """The `Document` that was updated by this mutation."""
+  document: Document
+
+  """
+  Our root query field type. Allows us to run any query from our mutation payload.
+  """
+  query: Query
+
+  """Reads a single `User` that is related to this `Document`."""
+  userByUserId: User
+
+  """An edge for our `Document`. May be used by Relay 1."""
+  documentEdge(
+    """The method to use when ordering `Document`."""
+    orderBy: [DocumentsOrderBy!] = [PRIMARY_KEY_ASC]
+  ): DocumentsEdge
+}
+
+"""All input for the `updateDocument` mutation."""
+input UpdateDocumentInput {
+  """
+  An arbitrary string value with no semantic meaning. Will be included in the
+  payload verbatim. May be used to track mutations by the client.
+  """
+  clientMutationId: String
+
+  """
+  The globally unique `ID` which will identify a single `Document` to be updated.
+  """
+  nodeId: ID!
+
+  """
+  An object where the defined keys will be set on the `Document` being updated.
+  """
+  documentPatch: DocumentPatch!
+}
+
+"""
+Represents an update to a `Document`. Fields that are set will be updated.
+"""
+input DocumentPatch {
+  id: String
+  userId: String
+  filename: String
+  url: String
+  status: Status
+  createdAt: Datetime
+}
+
+"""All input for the `updateDocumentById` mutation."""
+input UpdateDocumentByIdInput {
+  """
+  An arbitrary string value with no semantic meaning. Will be included in the
+  payload verbatim. May be used to track mutations by the client.
+  """
+  clientMutationId: String
+
+  """
+  An object where the defined keys will be set on the `Document` being updated.
+  """
+  documentPatch: DocumentPatch!
+  id: String!
+}
+
+"""The output of our update `Question` mutation."""
+type UpdateQuestionPayload {
+  """
+  The exact same `clientMutationId` that was provided in the mutation input,
+  unchanged and unused. May be used by a client to track mutations.
+  """
+  clientMutationId: String
+
+  """The `Question` that was updated by this mutation."""
+  question: Question
+
+  """
+  Our root query field type. Allows us to run any query from our mutation payload.
+  """
+  query: Query
+
+  """Reads a single `Document` that is related to this `Question`."""
+  documentByDocumentId: Document
+
+  """An edge for our `Question`. May be used by Relay 1."""
+  questionEdge(
+    """The method to use when ordering `Question`."""
+    orderBy: [QuestionsOrderBy!] = [PRIMARY_KEY_ASC]
+  ): QuestionsEdge
+}
+
+"""All input for the `updateQuestion` mutation."""
+input UpdateQuestionInput {
+  """
+  An arbitrary string value with no semantic meaning. Will be included in the
+  payload verbatim. May be used to track mutations by the client.
+  """
+  clientMutationId: String
+
+  """
+  The globally unique `ID` which will identify a single `Question` to be updated.
+  """
+  nodeId: ID!
+
+  """
+  An object where the defined keys will be set on the `Question` being updated.
+  """
+  questionPatch: QuestionPatch!
+}
+
+"""
+Represents an update to a `Question`. Fields that are set will be updated.
+"""
+input QuestionPatch {
+  id: String
+  documentId: String
+  text: String
+  createdAt: Datetime
+}
+
+"""All input for the `updateQuestionById` mutation."""
+input UpdateQuestionByIdInput {
+  """
+  An arbitrary string value with no semantic meaning. Will be included in the
+  payload verbatim. May be used to track mutations by the client.
+  """
+  clientMutationId: String
+
+  """
+  An object where the defined keys will be set on the `Question` being updated.
+  """
+  questionPatch: QuestionPatch!
+  id: String!
+}
+
+"""The output of our update `User` mutation."""
+type UpdateUserPayload {
+  """
+  The exact same `clientMutationId` that was provided in the mutation input,
+  unchanged and unused. May be used by a client to track mutations.
+  """
+  clientMutationId: String
+
+  """The `User` that was updated by this mutation."""
+  user: User
+
+  """
+  Our root query field type. Allows us to run any query from our mutation payload.
+  """
+  query: Query
+
+  """An edge for our `User`. May be used by Relay 1."""
+  userEdge(
+    """The method to use when ordering `User`."""
+    orderBy: [UsersOrderBy!] = [PRIMARY_KEY_ASC]
+  ): UsersEdge
+}
+
+"""All input for the `updateUser` mutation."""
+input UpdateUserInput {
+  """
+  An arbitrary string value with no semantic meaning. Will be included in the
+  payload verbatim. May be used to track mutations by the client.
+  """
+  clientMutationId: String
+
+  """
+  The globally unique `ID` which will identify a single `User` to be updated.
+  """
+  nodeId: ID!
+
+  """
+  An object where the defined keys will be set on the `User` being updated.
+  """
+  userPatch: UserPatch!
+}
+
+"""Represents an update to a `User`. Fields that are set will be updated."""
+input UserPatch {
+  id: String
+  email: String
+  password: String
+}
+
+"""All input for the `updateUserById` mutation."""
+input UpdateUserByIdInput {
+  """
+  An arbitrary string value with no semantic meaning. Will be included in the
+  payload verbatim. May be used to track mutations by the client.
+  """
+  clientMutationId: String
+
+  """
+  An object where the defined keys will be set on the `User` being updated.
+  """
+  userPatch: UserPatch!
+  id: String!
+}
+
+"""The output of our update `UserAnswer` mutation."""
+type UpdateUserAnswerPayload {
+  """
+  The exact same `clientMutationId` that was provided in the mutation input,
+  unchanged and unused. May be used by a client to track mutations.
+  """
+  clientMutationId: String
+
+  """The `UserAnswer` that was updated by this mutation."""
+  userAnswer: UserAnswer
+
+  """
+  Our root query field type. Allows us to run any query from our mutation payload.
+  """
+  query: Query
+
+  """Reads a single `User` that is related to this `UserAnswer`."""
+  userByUserId: User
+
+  """Reads a single `Question` that is related to this `UserAnswer`."""
+  questionByQuestionId: Question
+
+  """Reads a single `Answer` that is related to this `UserAnswer`."""
+  answerByAnswerId: Answer
+
+  """An edge for our `UserAnswer`. May be used by Relay 1."""
+  userAnswerEdge(
+    """The method to use when ordering `UserAnswer`."""
+    orderBy: [UserAnswersOrderBy!] = [PRIMARY_KEY_ASC]
+  ): UserAnswersEdge
+}
+
+"""All input for the `updateUserAnswer` mutation."""
+input UpdateUserAnswerInput {
+  """
+  An arbitrary string value with no semantic meaning. Will be included in the
+  payload verbatim. May be used to track mutations by the client.
+  """
+  clientMutationId: String
+
+  """
+  The globally unique `ID` which will identify a single `UserAnswer` to be updated.
+  """
+  nodeId: ID!
+
+  """
+  An object where the defined keys will be set on the `UserAnswer` being updated.
+  """
+  userAnswerPatch: UserAnswerPatch!
+}
+
+"""
+Represents an update to a `UserAnswer`. Fields that are set will be updated.
+"""
+input UserAnswerPatch {
+  id: String
+  userId: String
+  questionId: String
+  answerId: String
+  createdAt: Datetime
+}
+
+"""All input for the `updateUserAnswerById` mutation."""
+input UpdateUserAnswerByIdInput {
+  """
+  An arbitrary string value with no semantic meaning. Will be included in the
+  payload verbatim. May be used to track mutations by the client.
+  """
+  clientMutationId: String
+
+  """
+  An object where the defined keys will be set on the `UserAnswer` being updated.
+  """
+  userAnswerPatch: UserAnswerPatch!
+  id: String!
+}
+
+"""The output of our update `_PrismaMigration` mutation."""
+type UpdatePrismaMigrationPayload {
+  """
+  The exact same `clientMutationId` that was provided in the mutation input,
+  unchanged and unused. May be used by a client to track mutations.
+  """
+  clientMutationId: String
+
+  """The `_PrismaMigration` that was updated by this mutation."""
+  _prismaMigration: _PrismaMigration
+
+  """
+  Our root query field type. Allows us to run any query from our mutation payload.
+  """
+  query: Query
+
+  """An edge for our `_PrismaMigration`. May be used by Relay 1."""
+  _prismaMigrationEdge(
+    """The method to use when ordering `_PrismaMigration`."""
+    orderBy: [_PrismaMigrationsOrderBy!] = [PRIMARY_KEY_ASC]
+  ): _PrismaMigrationsEdge
+}
+
+"""All input for the `updatePrismaMigration` mutation."""
+input UpdatePrismaMigrationInput {
+  """
+  An arbitrary string value with no semantic meaning. Will be included in the
+  payload verbatim. May be used to track mutations by the client.
+  """
+  clientMutationId: String
+
+  """
+  The globally unique `ID` which will identify a single `_PrismaMigration` to be updated.
+  """
+  nodeId: ID!
+
+  """
+  An object where the defined keys will be set on the `_PrismaMigration` being updated.
+  """
+  _prismaMigrationPatch: _PrismaMigrationPatch!
+}
+
+"""
+Represents an update to a `_PrismaMigration`. Fields that are set will be updated.
+"""
+input _PrismaMigrationPatch {
+  id: String
+  checksum: String
+  finishedAt: Datetime
+  migrationName: String
+  logs: String
+  rolledBackAt: Datetime
+  startedAt: Datetime
+  appliedStepsCount: Int
+}
+
+"""All input for the `updatePrismaMigrationById` mutation."""
+input UpdatePrismaMigrationByIdInput {
+  """
+  An arbitrary string value with no semantic meaning. Will be included in the
+  payload verbatim. May be used to track mutations by the client.
+  """
+  clientMutationId: String
+
+  """
+  An object where the defined keys will be set on the `_PrismaMigration` being updated.
+  """
+  _prismaMigrationPatch: _PrismaMigrationPatch!
+  id: String!
+}
+
+"""The output of our delete `Answer` mutation."""
+type DeleteAnswerPayload {
+  """
+  The exact same `clientMutationId` that was provided in the mutation input,
+  unchanged and unused. May be used by a client to track mutations.
+  """
+  clientMutationId: String
+
+  """The `Answer` that was deleted by this mutation."""
+  answer: Answer
+  deletedAnswerId: ID
+
+  """
+  Our root query field type. Allows us to run any query from our mutation payload.
+  """
+  query: Query
+
+  """Reads a single `Question` that is related to this `Answer`."""
+  questionByQuestionId: Question
+
+  """An edge for our `Answer`. May be used by Relay 1."""
+  answerEdge(
+    """The method to use when ordering `Answer`."""
+    orderBy: [AnswersOrderBy!] = [PRIMARY_KEY_ASC]
+  ): AnswersEdge
+}
+
+"""All input for the `deleteAnswer` mutation."""
+input DeleteAnswerInput {
+  """
+  An arbitrary string value with no semantic meaning. Will be included in the
+  payload verbatim. May be used to track mutations by the client.
+  """
+  clientMutationId: String
+
+  """
+  The globally unique `ID` which will identify a single `Answer` to be deleted.
+  """
+  nodeId: ID!
+}
+
+"""All input for the `deleteAnswerById` mutation."""
+input DeleteAnswerByIdInput {
+  """
+  An arbitrary string value with no semantic meaning. Will be included in the
+  payload verbatim. May be used to track mutations by the client.
+  """
+  clientMutationId: String
+  id: String!
+}
+
+"""The output of our delete `Document` mutation."""
+type DeleteDocumentPayload {
+  """
+  The exact same `clientMutationId` that was provided in the mutation input,
+  unchanged and unused. May be used by a client to track mutations.
+  """
+  clientMutationId: String
+
+  """The `Document` that was deleted by this mutation."""
+  document: Document
+  deletedDocumentId: ID
+
+  """
+  Our root query field type. Allows us to run any query from our mutation payload.
+  """
+  query: Query
+
+  """Reads a single `User` that is related to this `Document`."""
+  userByUserId: User
+
+  """An edge for our `Document`. May be used by Relay 1."""
+  documentEdge(
+    """The method to use when ordering `Document`."""
+    orderBy: [DocumentsOrderBy!] = [PRIMARY_KEY_ASC]
+  ): DocumentsEdge
+}
+
+"""All input for the `deleteDocument` mutation."""
+input DeleteDocumentInput {
+  """
+  An arbitrary string value with no semantic meaning. Will be included in the
+  payload verbatim. May be used to track mutations by the client.
+  """
+  clientMutationId: String
+
+  """
+  The globally unique `ID` which will identify a single `Document` to be deleted.
+  """
+  nodeId: ID!
+}
+
+"""All input for the `deleteDocumentById` mutation."""
+input DeleteDocumentByIdInput {
+  """
+  An arbitrary string value with no semantic meaning. Will be included in the
+  payload verbatim. May be used to track mutations by the client.
+  """
+  clientMutationId: String
+  id: String!
+}
+
+"""The output of our delete `Question` mutation."""
+type DeleteQuestionPayload {
+  """
+  The exact same `clientMutationId` that was provided in the mutation input,
+  unchanged and unused. May be used by a client to track mutations.
+  """
+  clientMutationId: String
+
+  """The `Question` that was deleted by this mutation."""
+  question: Question
+  deletedQuestionId: ID
+
+  """
+  Our root query field type. Allows us to run any query from our mutation payload.
+  """
+  query: Query
+
+  """Reads a single `Document` that is related to this `Question`."""
+  documentByDocumentId: Document
+
+  """An edge for our `Question`. May be used by Relay 1."""
+  questionEdge(
+    """The method to use when ordering `Question`."""
+    orderBy: [QuestionsOrderBy!] = [PRIMARY_KEY_ASC]
+  ): QuestionsEdge
+}
+
+"""All input for the `deleteQuestion` mutation."""
+input DeleteQuestionInput {
+  """
+  An arbitrary string value with no semantic meaning. Will be included in the
+  payload verbatim. May be used to track mutations by the client.
+  """
+  clientMutationId: String
+
+  """
+  The globally unique `ID` which will identify a single `Question` to be deleted.
+  """
+  nodeId: ID!
+}
+
+"""All input for the `deleteQuestionById` mutation."""
+input DeleteQuestionByIdInput {
+  """
+  An arbitrary string value with no semantic meaning. Will be included in the
+  payload verbatim. May be used to track mutations by the client.
+  """
+  clientMutationId: String
+  id: String!
+}
+
+"""The output of our delete `User` mutation."""
+type DeleteUserPayload {
+  """
+  The exact same `clientMutationId` that was provided in the mutation input,
+  unchanged and unused. May be used by a client to track mutations.
+  """
+  clientMutationId: String
+
+  """The `User` that was deleted by this mutation."""
+  user: User
+  deletedUserId: ID
+
+  """
+  Our root query field type. Allows us to run any query from our mutation payload.
+  """
+  query: Query
+
+  """An edge for our `User`. May be used by Relay 1."""
+  userEdge(
+    """The method to use when ordering `User`."""
+    orderBy: [UsersOrderBy!] = [PRIMARY_KEY_ASC]
+  ): UsersEdge
+}
+
+"""All input for the `deleteUser` mutation."""
+input DeleteUserInput {
+  """
+  An arbitrary string value with no semantic meaning. Will be included in the
+  payload verbatim. May be used to track mutations by the client.
+  """
+  clientMutationId: String
+
+  """
+  The globally unique `ID` which will identify a single `User` to be deleted.
+  """
+  nodeId: ID!
+}
+
+"""All input for the `deleteUserById` mutation."""
+input DeleteUserByIdInput {
+  """
+  An arbitrary string value with no semantic meaning. Will be included in the
+  payload verbatim. May be used to track mutations by the client.
+  """
+  clientMutationId: String
+  id: String!
+}
+
+"""The output of our delete `UserAnswer` mutation."""
+type DeleteUserAnswerPayload {
+  """
+  The exact same `clientMutationId` that was provided in the mutation input,
+  unchanged and unused. May be used by a client to track mutations.
+  """
+  clientMutationId: String
+
+  """The `UserAnswer` that was deleted by this mutation."""
+  userAnswer: UserAnswer
+  deletedUserAnswerId: ID
+
+  """
+  Our root query field type. Allows us to run any query from our mutation payload.
+  """
+  query: Query
+
+  """Reads a single `User` that is related to this `UserAnswer`."""
+  userByUserId: User
+
+  """Reads a single `Question` that is related to this `UserAnswer`."""
+  questionByQuestionId: Question
+
+  """Reads a single `Answer` that is related to this `UserAnswer`."""
+  answerByAnswerId: Answer
+
+  """An edge for our `UserAnswer`. May be used by Relay 1."""
+  userAnswerEdge(
+    """The method to use when ordering `UserAnswer`."""
+    orderBy: [UserAnswersOrderBy!] = [PRIMARY_KEY_ASC]
+  ): UserAnswersEdge
+}
+
+"""All input for the `deleteUserAnswer` mutation."""
+input DeleteUserAnswerInput {
+  """
+  An arbitrary string value with no semantic meaning. Will be included in the
+  payload verbatim. May be used to track mutations by the client.
+  """
+  clientMutationId: String
+
+  """
+  The globally unique `ID` which will identify a single `UserAnswer` to be deleted.
+  """
+  nodeId: ID!
+}
+
+"""All input for the `deleteUserAnswerById` mutation."""
+input DeleteUserAnswerByIdInput {
+  """
+  An arbitrary string value with no semantic meaning. Will be included in the
+  payload verbatim. May be used to track mutations by the client.
+  """
+  clientMutationId: String
+  id: String!
+}
+
+"""The output of our delete `_PrismaMigration` mutation."""
+type DeletePrismaMigrationPayload {
+  """
+  The exact same `clientMutationId` that was provided in the mutation input,
+  unchanged and unused. May be used by a client to track mutations.
+  """
+  clientMutationId: String
+
+  """The `_PrismaMigration` that was deleted by this mutation."""
+  _prismaMigration: _PrismaMigration
+  deletedPrismaMigrationId: ID
+
+  """
+  Our root query field type. Allows us to run any query from our mutation payload.
+  """
+  query: Query
+
+  """An edge for our `_PrismaMigration`. May be used by Relay 1."""
+  _prismaMigrationEdge(
+    """The method to use when ordering `_PrismaMigration`."""
+    orderBy: [_PrismaMigrationsOrderBy!] = [PRIMARY_KEY_ASC]
+  ): _PrismaMigrationsEdge
+}
+
+"""All input for the `deletePrismaMigration` mutation."""
+input DeletePrismaMigrationInput {
+  """
+  An arbitrary string value with no semantic meaning. Will be included in the
+  payload verbatim. May be used to track mutations by the client.
+  """
+  clientMutationId: String
+
+  """
+  The globally unique `ID` which will identify a single `_PrismaMigration` to be deleted.
+  """
+  nodeId: ID!
+}
+
+"""All input for the `deletePrismaMigrationById` mutation."""
+input DeletePrismaMigrationByIdInput {
+  """
+  An arbitrary string value with no semantic meaning. Will be included in the
+  payload verbatim. May be used to track mutations by the client.
+  """
+  clientMutationId: String
+  id: String!
+}
+
+input _FileUploadInput {
+  file: Upload!
+}
+
+"""The `Upload` scalar type represents a file upload."""
+scalar Upload
+
+type _FileUploadPayload {
+  filename: String!
+  mimetype: String!
+  encoding: String!
+  url: String!
+}

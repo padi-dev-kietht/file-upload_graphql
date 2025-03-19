@@ -1,0 +1,76 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id       String  @id @default(uuid())
+  email    String  @unique
+  password String?
+
+  documents    Document[]
+  userAnswers  UserAnswer[]
+}
+
+model Document {
+  id         String    @id @default(uuid())
+  userId     String
+  filename   String
+  url        String
+  status     Status
+  createdAt  DateTime @default(now())
+
+  user       User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+  questions  Question[]
+  
+  @@index([userId])  // ✅ Add index
+}
+
+model Question {
+  id          String    @id @default(uuid())
+  documentId  String
+  text        String
+  createdAt   DateTime @default(now())
+
+  document    Document  @relation(fields: [documentId], references: [id], onDelete: Cascade)
+  answers     Answer[]
+  userAnswers UserAnswer[]
+   @@index([documentId])  // ✅ Add index
+}
+
+model Answer {
+  id         String  @id @default(uuid())
+  questionId String
+  text       String
+  isCorrect  Boolean
+  point      Int
+
+  question   Question @relation(fields: [questionId], references: [id], onDelete: Cascade)
+  userAnswers UserAnswer[]
+  @@index([questionId])
+}
+
+model UserAnswer {
+  id         String   @id @default(uuid())
+  userId     String
+  questionId String
+  answerId   String
+  createdAt  DateTime @default(now())
+
+  user       User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  question   Question @relation(fields: [questionId], references: [id], onDelete: Cascade)
+  answer     Answer   @relation(fields: [answerId], references: [id], onDelete: Cascade)
+  @@index([answerId])   // ✅ Add index
+  @@index([questionId]) // ✅ Add index
+  @@index([userId])     // ✅ Add index
+}
+
+enum Status {
+  processing
+  ready
+  failed
+}
