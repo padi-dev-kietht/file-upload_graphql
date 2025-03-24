@@ -11,7 +11,7 @@ export class PostgraphileController {
   constructor(private uploadModulePlugin: FileUploadModulePlugin) {
     const databaseUrl =
       'postgresql://postgres:Hiimtuankiet36@localhost:5432/aielearning';
-    console.log('Initializing PostGraphile Middleware...'); // Check if this logs
+    console.log('Initializing PostGraphile Middleware...');
     this.postgraphile = createMiddleware(
       databaseUrl,
       this.uploadModulePlugin.build(),

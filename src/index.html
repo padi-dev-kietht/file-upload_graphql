@@ -3,10 +3,12 @@
   <body>
     <h2>Upload File (GraphQL)</h2>
     <input type="file" id="fileInput" />
-    <button onclick="uploadFile()">Upload</button>
+    <button type="button" onclick="uploadFile()">Upload</button>
 
     <script>
-      async function uploadFile() {
+      async function uploadFile(event) {
+        event?.preventDefault();
+
         const fileInput = document.getElementById('fileInput');
         if (!fileInput.files.length) return alert('Select a file first!');
 
